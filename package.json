@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node build.js",
     "preview": "vite preview",
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js",
-    "vercel-build": "vite build"
+    "vercel-build": "node build.js"
   },
   "keywords": ["blockchain", "game", "monad", "brick-breaker", "leaderboard"],
   "author": "",

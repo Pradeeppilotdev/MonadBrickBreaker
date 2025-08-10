@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monad Brick Breaker</title>
+  <script type="module" crossorigin src="/assets/index-B8gn9U1h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B2VF87iJ.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>⚡ MONAD BRICK BREAKER ⚡</h1>
+            <div id="wallet-section">
+                <button id="connect-wallet" class="btn">🔗 Connect Wallet</button>
+                <div id="wallet-info" style="display: none;">
+                    <span id="wallet-address"></span>
+                    <button id="disconnect-wallet" class="btn btn-secondary">❌ Disconnect</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="game-section">
+                <div id="game-info">
+                    <div class="info-item">
+                        <label>Score:</label>
+                        <span id="current-score">0</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Level:</label>
+                        <span id="current-level">1</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Lives:</label>
+                        <span id="current-lives">3</span>
+                    </div>
+                    <div class="info-item">
+                        <label>High Score:</label>
+                        <span id="high-score">0</span>
+                    </div>
+                </div>
+
+                <canvas id="game-canvas" width="800" height="600"></canvas>
+
+                <div id="game-controls">
+                    <button id="start-game" class="btn btn-primary">🚀 Start Game</button>
+                    <button id="pause-game" class="btn" style="display: none;">⏸️ Pause</button>
+                    <button id="submit-score" class="btn btn-success" style="display: none;">⛓️ Submit to Blockchain</button>
+                </div>
+
+                <div id="game-over" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <h2>Game Over!</h2>
+                        <p>Final Score: <span id="final-score">0</span></p>
+                        <p>Level Reached: <span id="final-level">1</span></p>
+                        <div id="player-name-section">
+                            <label for="player-name">Enter your name:</label>
+                            <input type="text" id="player-name" maxlength="32" placeholder="Your name">
+                        </div>
+                        <div class="modal-buttons">
+                            <button id="play-again" class="btn btn-primary">🔄 Play Again</button>
+                            <button id="submit-final-score" class="btn btn-success">🏆 Submit to Leaderboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="leaderboard-section">
+                <h2>🏆 LEADERBOARD 🏆</h2>
+                <div id="leaderboard-tabs">
+                    <button id="top-100-tab" class="tab-btn active">🌍 Top 100</button>
+                    <button id="my-rank-tab" class="tab-btn">👤 My Rank</button>
+                </div>
+                
+                <div id="top-100-leaderboard" class="leaderboard-content">
+                    <div id="loading-leaderboard" class="loading">Loading leaderboard...</div>
+                    <table id="leaderboard-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="my-rank-leaderboard" class="leaderboard-content" style="display: none;">
+                    <div id="my-stats">
+                        <div class="stat-item">
+                            <label>My Rank:</label>
+                            <span id="my-rank">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>My High Score:</label>
+                            <span id="my-high-score">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>Total Games:</label>
+                            <span id="my-total-games">0</span>
+                        </div>
+                    </div>
+                    <div id="my-score-history">
+                        <h3>Score History</h3>
+                        <div id="score-history-list"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
