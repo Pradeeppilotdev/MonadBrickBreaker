@@ -274,6 +274,17 @@ class GameApp {
                 }
             }
 
+            // Initialize read-only contract if contractAddress is set but contract is null
+            if (this.blockchain.contractAddress && !this.blockchain.contract) {
+                const publicProvider = new ethers.JsonRpcProvider('https://testnet-rpc.monad.xyz');
+                this.blockchain.contract = new ethers.Contract(
+                    this.blockchain.contractAddress,
+                    this.blockchain.LEADERBOARD_ABI,
+                    publicProvider
+                );
+                console.log('Read-only contract initialized for leaderboard');
+            }
+
             // Load leaderboard (works without wallet connection)
             const topPlayers = await this.blockchain.getTopPlayers(100);
             this.displayLeaderboard(topPlayers);

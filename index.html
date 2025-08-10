@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monad Brick Breaker</title>
-    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <div id="app">
@@ -55,7 +55,7 @@
                         <p>Level Reached: <span id="final-level">1</span></p>
                         <div id="player-name-section">
                             <label for="player-name">Enter your name:</label>
-                            <input type="text" id="player-name" maxlength="32" placeholder="Your name">
+                            <input type="text" id="player-name" maxlength="32" placeholder="Your name" />
                         </div>
                         <div class="modal-buttons">
                             <button id="play-again" class="btn btn-primary">🔄 Play Again</button>
@@ -71,7 +71,7 @@
                     <button id="top-100-tab" class="tab-btn active">🌍 Top 100</button>
                     <button id="my-rank-tab" class="tab-btn">👤 My Rank</button>
                 </div>
-                
+
                 <div id="top-100-leaderboard" class="leaderboard-content">
                     <div id="loading-leaderboard" class="loading">Loading leaderboard...</div>
                     <table id="leaderboard-table" style="display: none;">
@@ -83,8 +83,7 @@
                                 <th>Date</th>
                             </tr>
                         </thead>
-                        <tbody id="leaderboard-body">
-                        </tbody>
+                        <tbody id="leaderboard-body"></tbody>
                     </table>
                 </div>
 
@@ -112,6 +111,6 @@
         </main>
     </div>
 
-    <script type="module" src="src/main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

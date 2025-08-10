@@ -56,7 +56,9 @@ export class BlockchainService {
     
     async loadContractInfo() {
         try {
-            const response = await fetch('/contractInfo.json');
+            // Adjust fetch path to go up one directory since root is ./src
+            const baseUrl = import.meta.env.BASE_URL || '/';
+            const response = await fetch(baseUrl + '../contractInfo.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
