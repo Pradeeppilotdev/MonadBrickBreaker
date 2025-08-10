@@ -4,12 +4,13 @@
   "description": "Brick Breaker game on Monad blockchain with leaderboard system",
   "main": "index.js",
   "scripts": {
-    "dev": "npx vite",
-    "build": "npx vite build",
-    "preview": "npx vite preview",
-    "compile": "npx hardhat compile",
-    "test": "npx hardhat test",
-    "deploy": "npx hardhat run scripts/deploy.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js",
+    "vercel-build": "vite build"
   },
   "keywords": ["blockchain", "game", "monad", "brick-breaker", "leaderboard"],
   "author": "",
