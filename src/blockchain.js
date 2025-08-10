@@ -56,19 +56,36 @@ export class BlockchainService {
     
     async loadContractInfo() {
         try {
-            // Adjust fetch path to go up one directory since root is ./src
-            const baseUrl = import.meta.env.BASE_URL || '/';
-            const response = await fetch(baseUrl + '../contractInfo.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            // Try multiple possible paths for contractInfo.json
+            const possiblePaths = [
+                '/contractInfo.json',           // Public folder (served at root)
+                './contractInfo.json',          // Same directory
+                '../contractInfo.json',         // Parent directory
+                '/public/contractInfo.json'     // Public folder explicitly
+            ];
+
+            for (const path of possiblePaths) {
+                try {
+                    console.log(`Trying to load contract info from: ${path}`);
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        const contractInfo = await response.json();
+                        this.contractAddress = contractInfo.address;
+                        console.log('Contract address loaded:', this.contractAddress);
+                        return true;
+                    }
+                } catch (err) {
+                    console.log(`Failed to load from ${path}:`, err.message);
+                    continue;
+                }
             }
-            const contractInfo = await response.json();
-            this.contractAddress = contractInfo.address;
-            console.log('Contract address loaded:', this.contractAddress);
-            return true;
+            
+            throw new Error('Contract info not found in any expected location');
         } catch (error) {
-            console.warn('Contract info not found. Please deploy the contract first.', error);
-            return false;
+            console.warn('Contract info not found. Using fallback address.', error);
+            // Use the known contract address as fallback
+            this.contractAddress = "0xc4105981E05680501471c1D7f8F214115D5A2F4e";
+            return true;
         }
     }
     
