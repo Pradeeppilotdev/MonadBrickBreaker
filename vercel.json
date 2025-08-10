@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "npm install && npx vite build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": null,
+  "functions": {},
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
