@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Test</title>
+</head>
+<body>
+    <h1>Contract Test</h1>
+    <button id="test-contract">Test Contract Connection</button>
+    <div id="result"></div>
+
+    <script type="module">
+        import { BlockchainService } from '/src/blockchain.js';
+
+        document.getElementById('test-contract').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+
+            try {
+                const blockchain = new BlockchainService();
+                
+                // Wait a bit for contract info to load
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                console.log('Contract address:', blockchain.contractAddress);
+                
+                if (!blockchain.contractAddress) {
+                    resultDiv.innerHTML = 'Contract address not found. Check contractInfo.json';
+                    return;
+                }
+                
+                // Try to connect wallet
+                const result = await blockchain.connectWallet();
+                console.log('Wallet connected:', result);
+                
+                // Test contract call
+                const leaderboardLength = await blockchain.contract.getLeaderboardLength();
+                console.log('Leaderboard length:', leaderboardLength);
+                
+                resultDiv.innerHTML = `
+                    <p>✅ Contract address: ${blockchain.contractAddress}</p>
+                    <p>✅ Wallet connected: ${result.address}</p>
+                    <p>✅ Contract working: Leaderboard has ${leaderboardLength} entries</p>
+                `;
+                
+            } catch (error) {
+                console.error('Test failed:', error);
+                resultDiv.innerHTML = `❌ Test failed: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
